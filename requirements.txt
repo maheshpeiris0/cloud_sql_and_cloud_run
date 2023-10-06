@@ -1,0 +1,8 @@
+Flask==2.3.2
+google-oauth2-tool==0.0.3
+google-cloud-bigquery==3.11.4
+google-cloud==0.34.0
+psycopg2==2.9.9 
+cloud-sql-python-connector==1.4.1
+SQLAlchemy==2.0.21
+cloud-sql-python-connector["pg8000"]==1.4.1
