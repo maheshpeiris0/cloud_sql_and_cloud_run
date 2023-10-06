@@ -1,0 +1,76 @@
+<!-- templates/eventform.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Event Form</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+
+<body>
+    <div class="blue-bar"></div> <!-- This is the blue bar -->
+    <form id="data-form">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" required>
+        <label for="country">Country:</label>
+        <input type="text" id="country" name="country" required>
+        <button type="submit">Submit</button>
+    </form>
+
+
+    <!-- Add a table below the form -->
+    <table id="data-table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Country</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Rows will be appended here dynamically using JS -->
+        </tbody>
+    </table>
+
+    <!-- Add a back button -->
+    <br></br>
+    <a class="back-link" href="{{ url_for('index') }}">Back to Index</a>
+</body>
+
+<script>
+    document.getElementById("data-form").addEventListener("submit", function(event) {
+        event.preventDefault();
+        const formData = new FormData(event.target);
+    
+        const data = {};
+        formData.forEach((value, key) => {
+            data[key] = value;
+        });
+    
+        fetch("/submit_form", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(result => {
+            alert("Form data submitted successfully!");
+
+            // Append the data to the table
+            const tableBody = document.getElementById("data-table").querySelector("tbody");
+            const newRow = document.createElement("tr");
+
+            newRow.innerHTML = `<td>${data.name}</td><td>${data.age}</td><td>${data.country}</td>`;
+            tableBody.appendChild(newRow);
+        })
+        .catch(error => {
+            alert("An error occurred while submitting the form.");
+        });
+    });
+</script>   
+
+</html>
