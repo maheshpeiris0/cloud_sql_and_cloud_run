@@ -3,7 +3,7 @@
 
 <br>
 
-# gcloud commandas
+# gcloud commands
 
 gcloud sql instances describe postgres-1
 
