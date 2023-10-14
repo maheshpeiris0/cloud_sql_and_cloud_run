@@ -24,7 +24,5 @@ steps:
   - 'service_account.iam.gserviceaccount.com'
   # Optional: if you want to allow unauthenticated access
   - '--allow-unauthenticated'
-  - '--vpc-connector'
-  - 'serverless-vpc-connector-name'
   - '--set-env-vars'
   - 'INSTANCE_HOST=IP,DB_USER=username,DB_PASS=password,DB_NAME=database_name,DB_PORT=5432' 
