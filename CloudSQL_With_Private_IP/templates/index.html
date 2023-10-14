@@ -1,0 +1,51 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Web App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+    <div class="blue-bar"></div> <!-- This is the blue bar -->
+    <br>
+    <h1>Hello, World!</h1>
+    
+    <div class="button-container">
+        <a href="{{ url_for('page_two') }}" class="button-link">
+            <button class="large-button">Page 2</button>
+        </a>
+        <a href="{{ url_for('event_form') }}" class="button-link">
+            <button class="large-button" id="button2">Emp Details</button>
+        </a>
+        <a href="#" class="button-link">
+            <button class="large-button">Button 3</button>
+        </a>
+        <a href="#" class="button-link">
+            <button class="large-button">Button 4</button>
+        </a>
+    </div>
+
+    <!-- Display data in a table -->
+    <br></br>
+    <table id="main-table" border="1">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Country</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in data %}
+                <tr>
+                    <td>{{ row.name }}</td>
+                    <td>{{ row.age }}</td>
+                    <td>{{ row.country }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</body>
+</html>

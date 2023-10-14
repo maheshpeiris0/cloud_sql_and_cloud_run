@@ -1,0 +1,28 @@
+steps:
+# Step 1: Build the Docker Image
+- name: 'gcr.io/cloud-builders/docker'
+  args: [ 'build', '-t', 'us-central1-docker.pkg.dev/project-id/image-name/image:tag', '.' ]
+
+# Step 2: Push the image to the Artifact Registry
+- name: 'gcr.io/cloud-builders/docker'
+  args: [ 'push', 'us-central1-docker.pkg.dev/project-id/image-name/image:tag' ]
+
+
+# Step 3: Deployment to Cloud Run after image is pushed
+- name: 'gcr.io/cloud-builders/gcloud'
+  args:
+  - 'run'
+  - 'deploy'
+  - 'my-service'  # Replace with your service name
+  - '--image'
+  - 'us-central1-docker.pkg.dev/project-id/image-name/image:tag'
+  - '--region'
+  - 'us-central1'  # You can change this if you want to deploy to a different region
+  - '--platform'
+  - 'managed'
+  - '--service-account' # you can use the default service account or create a new one
+  - 'service_account.iam.gserviceaccount.com'
+  # Optional: if you want to allow unauthenticated access
+  - '--allow-unauthenticated'
+  - '--set-env-vars'
+  - 'INSTANCE_HOST=IP,DB_USER=username,DB_PASS=password,DB_NAME=database_name,DB_PORT=5432' 
