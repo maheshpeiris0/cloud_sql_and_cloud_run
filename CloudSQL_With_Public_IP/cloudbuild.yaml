@@ -20,7 +20,7 @@ steps:
   - 'us-central1'  # You can change this if you want to deploy to a different region
   - '--platform'
   - 'managed'
-  - '--service-account'
+  - '--service-account' # you can use the default service account or create a new one
   - 'service_account.iam.gserviceaccount.com'
   # Optional: if you want to allow unauthenticated access
   - '--allow-unauthenticated'
