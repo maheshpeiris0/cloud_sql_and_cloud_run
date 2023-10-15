@@ -25,3 +25,4 @@ see table \dt
 
 psql "host=10.117.240.9 port=5432 sslmode=disable dbname=cloudrun user=sqluser"
 
+CREATE TABLE IF NOT EXISTS employee ( name VARCHAR(255) NOT NULL, age INT NOT NULL, country VARCHAR(255) NOT NULL );
