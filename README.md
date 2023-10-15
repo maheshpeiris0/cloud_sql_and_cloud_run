@@ -7,7 +7,7 @@
 
 gcloud sql instances describe postgres-1
 
-gcloud sql connect postgres-1 --database=cloudrun --user=sqluser
+gcloud sql users create sqluser --instance=postgres-1 --password="canada"
 
 gcloud sql databases create cloudrun --instance="postgres-1"
 
